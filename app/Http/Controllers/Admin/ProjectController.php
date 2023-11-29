@@ -77,9 +77,15 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $project->name = $request->name;
+        $project->slug = Project::generateSlug($request->name);
+        $project->date_start = $request->date_start;
+        $project->description = $request->description;
+        $project->save();
+
+        return redirect()->route('admin.projects.index', ['project' => $project->id]);
     }
 
     /**
