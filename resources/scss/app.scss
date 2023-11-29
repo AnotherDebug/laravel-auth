@@ -5,7 +5,6 @@ header {
 
 .main-wrapper {
     height: calc(100vh - 60px);
-    width: calc(100% - 250px);
 }
 
 aside {
@@ -13,4 +12,9 @@ aside {
         width: 250px;
         height: 100%;
     }
+}
+
+.projectList {
+    width: calc(100% - 250px);
+    overflow-y: auto;
 }
