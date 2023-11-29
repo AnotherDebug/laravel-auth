@@ -1,5 +1,5 @@
 <aside>
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
           <span class="fs-4">Sidebar</span>
@@ -7,15 +7,15 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
+            <a href="{{ route('admin.home') }}" class="nav-link {{ Route::currentRouteName() == 'admin.home' ? 'active' : 'text-white' }}" aria-current="page">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-              Home
+              Dashboard
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link text-white">
+            <a href="{{ route('admin.projects.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.projects.index' ? 'active' : 'text-white' }}">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-              Dashboard
+              Projects list
             </a>
           </li>
           <li>
