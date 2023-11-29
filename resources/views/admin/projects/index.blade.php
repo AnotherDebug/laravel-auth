@@ -24,7 +24,7 @@
         <td>{{ $project->name }}</td>
         <td>{{ date('d/m/Y', strtotime($project->date_start)) }}</td>
         <td>{{ $project->description }}</td>
-        <td><a class="btn btn-warning" href="#"><i class="fa-solid fa-pencil"></i></a></td>
+        <td><a class="btn btn-warning" href="{{ route('admin.projects.edit', $project) }}"><i class="fa-solid fa-pencil"></i></a></td>
       </tr>
       @endforeach
 
