@@ -21,7 +21,8 @@
 
     @include('admin.partials._header')
 
-    <main class="container">
+    <main class="main-wrapper d-flex">
+        @include('admin.partials._sidebar')
         @yield('content')
     </main>
 

@@ -1,1 +1,15 @@
-@import '~bootstrap/scss/bootstrap'
+@import "~bootstrap/scss/bootstrap";
+header {
+    height: 60px;
+}
+
+.main-wrapper {
+    height: calc(100vh - 60px);
+}
+
+aside {
+    div {
+        width: 250px;
+        height: 100%;
+    }
+}
