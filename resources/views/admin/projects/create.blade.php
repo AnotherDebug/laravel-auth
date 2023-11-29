@@ -34,3 +34,8 @@
         </div>
     </div>
 @endsection
+
+
+@section('title')
+ | Add new Project
+@endsection

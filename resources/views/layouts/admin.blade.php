@@ -12,7 +12,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <title>Admin</title>
+    <title>Admin @yield('title')</title>
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>

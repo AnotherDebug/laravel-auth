@@ -24,3 +24,8 @@
         </form>
     </div>
     @endsection
+
+
+@section('title')
+| Edit
+@endsection

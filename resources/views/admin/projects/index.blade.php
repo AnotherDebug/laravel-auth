@@ -40,3 +40,8 @@
         {{ $projects->links() }}
     </div>
 @endsection
+
+
+@section('title')
+    | Projects List
+@endsection
