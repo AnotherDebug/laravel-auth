@@ -19,7 +19,8 @@
                 <label for="description" class="form-label">description</label>
                 <textarea class="form-control" id="description" rows="3" name="description">{{ $project->description }}</textarea>
             </div>
-            <a href="{{ route('admin.projects.index') }}" type="submit" class="btn btn-primary">Abort</a>
+            <button type="submit" class="btn btn-primary">Edit</button>
+            <a href="{{ route('admin.projects.index') }}" type="submit" class="btn btn-secondary">Abort</a>
         </form>
     </div>
     @endsection

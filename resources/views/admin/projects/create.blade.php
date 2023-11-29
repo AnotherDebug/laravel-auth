@@ -24,7 +24,8 @@
                             <textarea class="form-control" id="description" rows="3" name="description"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Aggiungi</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                        <a href="{{ route('admin.projects.index') }}" type="reset" class="btn btn-secondary">Abort</a>
                     </form>
 
 
