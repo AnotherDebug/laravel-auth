@@ -19,9 +19,9 @@
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link text-white">
+            <a href="{{ route('admin.projects.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.projects.create' ? 'active' : 'text-white' }}">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-              Orders
+              Add new Project
             </a>
           </li>
           <li>
