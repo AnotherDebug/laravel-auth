@@ -4,6 +4,12 @@
     <div class="create">
         <h1 class="text-center">Add new Project</h1>
 
+        @if (session('success'))
+            <div id="error-message" class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="container-fluid my-5">
             <div class="row">
                 <div class="col">
@@ -37,5 +43,5 @@
 
 
 @section('title')
- | Add new Project
+    | Add new Project
 @endsection

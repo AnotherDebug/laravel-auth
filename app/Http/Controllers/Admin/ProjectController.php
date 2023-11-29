@@ -37,6 +37,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        // salvo nella variabile exist il risultato della ricerca
+        $exist = Project::where('name', $request->name)->first();
+// se la ricerca ha trovato un risultato parte il messaggio di errore
+        if ($exist) {
+            return redirect()->route('admin.projects.index')->with('error', 'Progetto già esistente');
+        }
 
         $new_project = new Project();
         $new_project->name = $request->name;
@@ -45,7 +51,7 @@ class ProjectController extends Controller
         $new_project->description = $request->description;
         $new_project->save();
 
-        return redirect()->route('admin.projects.index', ['project' => $new_project->id]);
+        return redirect()->route('admin.projects.create', ['project' => $new_project->id])->with('success', 'Progetto inserito con successo');
     }
 
     /**

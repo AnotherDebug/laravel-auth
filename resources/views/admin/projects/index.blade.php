@@ -4,7 +4,13 @@
 
 @section('content')
     <div class="projectList ms-5 pt-5 pe-5">
-        <h1>Projects List</h1>
+        <h1 class="text-center">Projects List</h1>
+
+        @if (session('error'))
+            <div id="error-message" class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
 
         <table class="table">
             <thead>
