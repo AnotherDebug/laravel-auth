@@ -49,7 +49,6 @@
                             @error('description')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                            {{-- <small class="text-muted">Caratteri rimanenti: <span id="char-count">500</span></small> --}}
                         </div>
 
                         <button type="submit" class="btn btn-primary">Add</button>
