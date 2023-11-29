@@ -2,6 +2,8 @@
 
 @section('content')
 
-<h1>Home Dashboard</h1>
+<div class="adminHome">
+    <h1>Home Dashboard</h1>
+</div>
 
 @endsection
