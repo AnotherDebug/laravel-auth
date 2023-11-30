@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
+use App\Functions\Helper;
 
 class ProjectController extends Controller
 {
@@ -40,19 +41,19 @@ class ProjectController extends Controller
     {
         // salvo nella variabile exist il risultato della ricerca
         $exist = Project::where('name', $request->name)->first();
-// se la ricerca ha trovato un risultato parte il messaggio di errore
+        // se la ricerca ha trovato un risultato parte il messaggio di errore
         if ($exist) {
             return redirect()->route('admin.projects.index')->with('error', 'Progetto già esistente');
         }
 
         $new_project = new Project();
         $new_project->name = $request->name;
-        $new_project->slug = Project::generateSlug($request->name);
+        $new_project->slug = Helper::generateSlug($request->name, Project::class);
         $new_project->date_start = $request->date_start;
         $new_project->description = $request->description;
         $new_project->save();
 
-        return redirect()->route('admin.projects.create', ['project' => $new_project->id])->with('success', 'Progetto inserito con successo');
+        return redirect()->route('admin.projects.create')->with('success', 'Progetto inserito con successo');
     }
 
     /**
@@ -87,12 +88,12 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $project->name = $request->name;
-        $project->slug = Project::generateSlug($request->name);
+        $project->slug = Helper::generateSlug($request->name, Project::class);
         $project->date_start = $request->date_start;
         $project->description = $request->description;
         $project->save();
 
-        return redirect()->route('admin.projects.index', ['project' => $project->id]);
+        return redirect()->route('admin.projects.index');
     }
 
     /**
