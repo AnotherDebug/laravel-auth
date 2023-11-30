@@ -3,7 +3,7 @@
 
 
 @section('content')
-    <div class="projectList ms-5 pt-5 pe-5">
+    <div class="technologyList ms-5 pt-5 pe-5">
         <h1 class="text-center">Technologies List</h1>
 
         @if (session('error'))
@@ -21,11 +21,12 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($technologies as $technology)
+                @foreach ($technologies as $technology)
                     <tr>
+                        <td>{{ $technology->id }}</td>
                         <td>{{ $technology->name }}</td>
                     </tr>
-                @endforeach --}}
+                @endforeach
 
             </tbody>
         </table>
