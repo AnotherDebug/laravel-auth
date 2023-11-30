@@ -16,7 +16,7 @@
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Project_name</th>
                     <th scope="col">Date_start</th>
                     <th scope="col">Description</th>
                     <th scope="col">Options</th>
@@ -32,10 +32,12 @@
                         <td><a class="btn btn-warning" href="{{ route('admin.projects.edit', $project) }}"><i
                                     class="fa-solid fa-pencil"></i></a></td>
                         <td>
-                            <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                            <form action="{{ route('admin.projects.destroy', $project) }}" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare?')">
+
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+
                             </form>
                         </td>
                     </tr>
