@@ -24,18 +24,18 @@
               Add new Project
             </a>
           </li>
-          {{-- <li>
-            <a href="#" class="nav-link text-white">
+          <li>
+            <a href="{{ route('admin.technologies.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.technologies.index' ? 'active' : 'text-white' }}">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-              Products
+              Technologies List
             </a>
           </li>
           <li>
             <a href="#" class="nav-link text-white">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-              Customers
+              Types List
             </a>
-          </li> --}}
+          </li>
         </ul>
         {{-- <hr>
         <div class="dropdown">
