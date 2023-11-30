@@ -22,7 +22,7 @@ class ProjectsSeeder extends Seeder
             $new_project = new Project();
             $new_project->name = $faker->name(1);
             $new_project->slug = Helper::generateSlug($new_project->name, Project::class);
-            $new_project->date_start = $faker->date();
+            $new_project->date_start = $faker->date('Y-m-d');
             $new_project->description = $faker->paragraph();
             $new_project->save();
             //dump($new_project);
