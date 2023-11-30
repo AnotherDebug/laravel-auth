@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Technology;
+use Illuminate\Support\Str;
+use App\Functions\Helper;
 
 class TechnologyController extends Controller
 {
@@ -15,7 +17,7 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        $technologies = Technology::all();
+        $technologies = Technology::paginate(10);
         return view('admin.technologies.index', compact('technologies'));
     }
 
@@ -37,7 +39,16 @@ class TechnologyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exist = Technology::where('name', $request->name)->exists();
+
+        if ($exist) {
+            return redirect()->route('admin.technologies.index')->with('error', 'Categoria già esistente');
+        }
+        $new_category = new Technology();
+        $new_category->name = $request->name;
+        $new_category->slug = Str::slug($request->name, '-');
+        $new_category->save();
+        return redirect()->route('admin.technologies.index')->with('success', 'Categoria creata con successo');
     }
 
     /**
@@ -71,7 +82,29 @@ class TechnologyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $val_data = $request->validate([
+            'name' => 'required|min:2|max:20',
+        ],[
+            'name.required' => 'Devi inserire il nome della categoria',
+            'name.min' => 'Il nome della categoria deve essere minimo 2 caratteri',
+            'name.max' => 'Il nome della categoria deve essere massimo 20 caratteri'
+        ]);
+
+
+        $exist = Technology::where('name', $request->name)->first();
+        if($exist){
+            return redirect()->route('admin.technologies.index')->with('error', 'Categoria già presente');
+        }
+
+
+        $val_data['slug'] = Helper::generateSlug($request->name, Technology::class);
+
+
+        $technology->update($val_data);
+
+
+        return redirect()->route('admin.technologies.index')->with('success', 'Categoria aggiornata con successo');
     }
 
     /**
