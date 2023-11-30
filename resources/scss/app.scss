@@ -49,3 +49,17 @@ aside {
         }
     }
 }
+
+.typesList {
+    width: 100%;
+    padding: 20px;
+    overflow-y: auto;
+    .form-hidden{
+        width: 100%;
+        border: none;
+        &:focus{
+            border:none;
+            outline: none;
+        }
+    }
+}

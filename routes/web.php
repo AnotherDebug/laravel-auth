@@ -36,6 +36,6 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::resource('projects', ProjectController::class);
         Route::resource('technologies', TechnologyController::class);
-        Route::resource('types', TypeController::class);
+        Route::resource('type', TypeController::class);
     });
 require __DIR__.'/auth.php';
