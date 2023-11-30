@@ -16,7 +16,7 @@ class TypesSeeder extends Seeder
      */
     public function run()
     {
-        $data = ['CSS', 'HTML', 'Javascript', 'PHP', 'Laravel', 'Bootstrap', 'Wordpress', 'Jquery', 'React', 'Vue', 'Angular'];
+        $data = ['Backend', 'Frontend', 'Database', 'Framework Backend', 'Server', 'Framework Frontend', 'Librerie', 'Gestione del Codice', 'CMS'];
 
         foreach ($data as $type) {
 
