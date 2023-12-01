@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Functions\Helper;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -46,14 +47,24 @@ class ProjectController extends Controller
             return redirect()->route('admin.projects.index')->with('error', 'Progetto già esistente');
         }
 
-        $new_project = new Project();
-        $new_project->name = $request->name;
-        $new_project->slug = Helper::generateSlug($request->name, Project::class);
-        $new_project->date_start = $request->date_start;
-        $new_project->description = $request->description;
-        $new_project->save();
+        $form_data = $request->all();
 
-        return redirect()->route('admin.projects.create')->with('success', 'Progetto inserito con successo');
+        $form_data['slug'] = Helper::generateSlug($request->name, Project::class);
+
+        // se esiste la chiave image salvo l'immagine nel file system e nel database
+        if (array_key_exists('image', $form_data)) {
+            // prima di salvare il file prendo il nome del file per salvarlo nel db
+            $form_data['image_original_name'] = $request->file('image')->getClientOriginalName();
+             // salvo il file nello storage rinominandolo
+             //dd($form_data);
+            $form_data['image'] = Storage::put('uploads', $request->file('image'));
+
+        }
+
+        $new_project = Project::create($form_data);
+
+
+        return redirect()->route('admin.projects.create', $new_project)->with('success', 'Progetto inserito con successo');
     }
 
     /**
@@ -62,9 +73,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
