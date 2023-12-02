@@ -39,13 +39,13 @@
                 <div class="thumb w-25 mb-4">
                     <label for="imagePreview" class="form-label d-block fw-bolder">Image preview</label>
                     <img id="imagePreview" src="{{ asset('storage/' . $project->image) }}" class="img-fluid @error('name') is-invalid @enderror" alt="">
-                    {{-- <p><strong>Name Photo:</strong>{{ old('image_original_name') }}</p> --}}
+                    <p><strong>Name Photo:</strong> {{ $project->image_original_name }}</p>
                 </div>
             @else
                 <div class="thumb w-25 mb-4">
                     <label for="imagePreview" class="form-label d-block fw-bolder">Image preview</label>
                     <img id="imagePreview" src="{{ asset('storage/'. old('image')) }}" class="img-fluid @error('name') is-invalid @enderror" alt="">
-                    {{-- <p><strong>Name Photo:</strong>{{ old('image_original_name') }}</p> --}}
+                    <p><strong>Name Photo:</strong><p> {{ $project->image_original_name }}</p></p>
                 </div>
             @endif
             </div>
