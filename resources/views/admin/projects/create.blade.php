@@ -46,9 +46,9 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="date_start" class="form-label fw-bolder">Image:</label>
+                            <label for="image" class="form-label fw-bolder">Image:</label>
                             <input type="file" name="image" class="form-control @error('image') is-invalid @enderror"
-                                id="image" value="{{ old('image') }}" enctype="multipart/form-data">
+                                id="image" value="{{ old('image') }}">
                             @error('image')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

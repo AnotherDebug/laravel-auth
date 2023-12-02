@@ -96,15 +96,38 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(StoreProjectRequest $request, project $project)
     {
-        $project->name = $request->name;
-        $project->slug = Helper::generateSlug($request->name, Project::class);
-        $project->date_start = $request->date_start;
-        $project->description = $request->description;
-        $project->save();
+        // $project->name = $request->name;
+        // $project->slug = Helper::generateSlug($request->name, Project::class);
+        // $project->date_start = $request->date_start;
+        // $project->description = $request->description;
+        // $project->save();
 
-        return redirect()->route('admin.projects.index');
+        // return redirect()->route('admin.projects.index');
+        $form_data = $request->all();
+        if($form_data['name']!= $project->name){
+            $form_data['slug'] = Helper::generateSlug($form_data['name'], project::class);
+        }else{
+            $form_data['slug'] = $project->slug;
+        }
+
+        if(array_key_exists('image', $form_data)){
+            // se esiste la chiave image vuol dire che devo sostituire l'immagine presente (se c'è) eliminando quella vecchia
+            if($project->image){
+                // se era presente la elimino dallo storage
+                Storage::disk('public')->delete($project->image);
+            }
+
+            // prima di salvare il file prendo il nome del file per salvarlo nel db
+            $form_data['image_original_name'] = $request->file('image')->getClientOriginalName();
+            // salvo il file nello storage rinominandolo
+            $form_data['image'] = Storage::put('uploads', $form_data['image']);
+        }
+
+
+        $project->update($form_data);
+        return redirect()->route('admin.projects.show', $project);
     }
 
     /**
