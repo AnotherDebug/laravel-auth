@@ -29,14 +29,21 @@
                         <td>{{ $project->name }}</td>
                         <td>{{ date('d/m/Y', strtotime($project->date_start)) }}</td>
                         {{-- <td>{{ $project->description }}</td> --}}
-                        <td><a class="btn btn-info" href="{{ route('admin.projects.show', $project) }}"><i
-                                    class="fa-solid fa-eye"></i></a></td>
-                        <td><a class="btn btn-warning" href="{{ route('admin.projects.edit', $project) }}"><i
-                                    class="fa-solid fa-pencil"></i></a></td>
-                        <td>
+                        <td class="d-flex">
+                            <a class="btn btn-info me-1"
+                            href="{{ route('admin.projects.show', $project) }}">
+                            <i class="fa-solid fa-eye"></i>
+                            </a>
+
+                            <a class="btn btn-warning  me-1" href="{{ route('admin.projects.edit', $project) }}">
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+
                             <form action="{{ route('admin.projects.destroy', $project) }}" method="POST"
                                 onsubmit="return confirm('Sei sicuro di voler eliminare?')"> @csrf @method('DELETE') <button
-                                    class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button> </form>
+                                    class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
