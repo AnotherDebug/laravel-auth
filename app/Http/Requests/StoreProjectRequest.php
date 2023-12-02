@@ -24,7 +24,8 @@ class StoreProjectRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:20',
             'date_start' => 'required|date',
-            'description' => 'required|max:500'
+            'description' => 'required|max:500',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
@@ -36,7 +37,9 @@ class StoreProjectRequest extends FormRequest
             'date_start.required' => 'E\' richiesta la data di inizio del progetto',
             'date_start.date' => 'Inserisci una data valida per la data di inizio del progetto',
             'description.required' => 'E\' richiesta la descrizione del Progetto',
-            'description.max' => 'La descrizione del Progetto deve contenere meno di 500 caratteri'
+            'description.max' => 'La descrizione del Progetto deve contenere meno di 500 caratteri',
+            'image.image' => 'Inserisci una immagine valida',
+            'image.mimes' => 'Inserisci una immagine valida di tipo jpeg, png, jpg, gif o svg',
         ];
     }
 }
